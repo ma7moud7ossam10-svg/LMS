@@ -7,10 +7,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 //Routes  URL 
-const productRoutes= require("./routes/product.route.js");
-
-app.use("/api/products", productRoutes);
-
 
 // GET , PUT , POST , DELETE 
 // TEST URL Genral  
