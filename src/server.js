@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const userRoutes = require("./routes/userRoutes");
 
 // express use 
 dotenv.config();
@@ -15,6 +16,8 @@ app.get("/",(req, res)=>{
         message :"API its ok"
     });
 });
+
+app.use("/api/users", userRoutes);
 
 // Route don't exit 
 app.use ((req, res , next )=>{
