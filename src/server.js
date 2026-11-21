@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 // express use 
 dotenv.config();
@@ -18,6 +19,7 @@ app.get("/",(req, res)=>{
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/categories", categoryRoutes);
 
 // Route don't exit 
 app.use ((req, res , next )=>{

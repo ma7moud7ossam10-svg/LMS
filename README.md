@@ -19,3 +19,22 @@ Create a user:
   "role": "student"
 }
 ```
+
+## Category API
+
+- `POST /api/categories` - create a category
+- `GET /api/categories` - list categories
+- `GET /api/categories?active=true` - list active categories
+- `GET /api/categories/:id` - get a category
+- `PUT /api/categories/:id` or `PATCH /api/categories/:id` - update a category
+- `DELETE /api/categories/:id` - delete a category
+
+Create a category:
+
+```json
+{
+  "name": "Web Development",
+  "description": "Courses for building websites and web applications",
+  "isActive": true
+}
+```
