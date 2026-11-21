@@ -38,7 +38,7 @@ lms-platform/
 │   │   │   ├── auth.service.js
 │   │   │   └── auth.schema.js     # قواعد التحقق
 │   │   ├── users/    donne 
-│   │   ├── categories/
+│   │   ├── categories/ done 
 │   │   ├── courses/
 │   │   ├── sections/
 │   │   ├── lessons/
