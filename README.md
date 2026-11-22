@@ -38,3 +38,27 @@ Create a category:
   "isActive": true
 }
 ```
+
+## Course API
+
+- `POST /api/courses` - create a course
+- `GET /api/courses` - list courses
+- `GET /api/courses?category=<category-id>&status=published&level=beginner&active=true&search=node` - filter courses
+- `GET /api/courses/:id` - get a course
+- `PUT /api/courses/:id` or `PATCH /api/courses/:id` - update a course
+- `DELETE /api/courses/:id` - delete a course
+
+Create a course:
+
+```json
+{
+  "title": "Node.js Fundamentals",
+  "description": "Build backend applications with Node.js",
+  "category": "<category-id>",
+  "instructor": "<instructor-user-id>",
+  "price": 49.99,
+  "level": "beginner",
+  "status": "draft",
+  "isActive": true
+}
+```
