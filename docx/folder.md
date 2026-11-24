@@ -39,12 +39,12 @@ lms-platform/
 │   │   │   └── auth.schema.js     # قواعد التحقق
 │   │   ├── users/    donne 
 │   │   ├── categories/ done 
-│   │   ├── courses/
-│   │   ├── sections/
-│   │   ├── lessons/
+│   │   ├── courses/ done 
+│   │   ├── sections/ done
+│   │   ├── lessons/ done
 │   │   ├── enrollments/
 │   │   ├── progress/
-│   │   ├── quizzes/
+│   │   ├── quizzes/ done done
 │   │   ├── attempts/
 │   │   │   ├── attempts.routes.js
 │   │   │   ├── attempts.controller.js

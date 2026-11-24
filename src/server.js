@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const courseRoutes = require("./routes/courseRoutes");
-
+const sectionRoutes = require("./routes/sectionRoutes");
+const lessonRoutes = require("./routes/lessonRoutes");
+const quizRoutes = require("./routes/quizzesRoutes");
 // express use 
 dotenv.config();
 const app = express();
@@ -22,7 +24,9 @@ app.get("/",(req, res)=>{
 app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/courses", courseRoutes);
-
+app.use("/api/sections", sectionRoutes);
+app.use("/api/lessons", lessonRoutes);
+app.use("/api/quizzes", quizRoutes);
 // Route don't exit 
 app.use ((req, res , next )=>{
 const error = new Error(`Route ${req.originalUrl} not found`);

@@ -62,3 +62,84 @@ Create a course:
   "isActive": true
 }
 ```
+
+## Section API
+
+- `POST /api/sections` - create a section
+- `GET /api/sections` - list sections
+- `GET /api/sections?course=<course-id>&active=true&search=basics` - filter sections
+- `GET /api/sections/:id` - get a section
+- `PUT /api/sections/:id` or `PATCH /api/sections/:id` - update a section
+- `DELETE /api/sections/:id` - delete a section
+
+Create a section:
+
+```json
+{
+  "title": "Getting Started",
+  "description": "Introduction and setup",
+  "course": "<course-id>",
+  "order": 1,
+  "isActive": true
+}
+```
+
+
+## Lesson API
+
+- `POST /api/lessons` - create a lesson
+- `GET /api/lessons` - list lessons
+- `GET /api/lessons?section=<section-id>&type=video&active=true&free=true&search=introduction` - filter lessons
+- `GET /api/lessons/:id` - get a lesson
+- `PUT /api/lessons/:id` or `PATCH /api/lessons/:id` - update a lesson
+- `DELETE /api/lessons/:id` - delete a lesson
+
+Create a lesson:
+
+```json
+{
+  "title": "Installing Node.js",
+  "description": "Install Node.js and verify the setup",
+  "section": "<section-id>",
+  "type": "video",
+  "contentUrl": "https://example.com/lesson-video",
+  "durationMinutes": 12,
+  "order": 1,
+  "isFree": true,
+  "isActive": true
+}
+```
+
+## Quiz API
+
+- `POST /api/quizzes` - create a quiz
+- `GET /api/quizzes` - list published quizzes
+- `GET /api/quizzes?course=<course-id>` - filter published quizzes by course
+- `GET /api/quizzes/course/<course-id>` - list published quizzes for a course
+- `GET /api/quizzes/:id` - get a published quiz
+- `PUT /api/quizzes/:id` or `PATCH /api/quizzes/:id` - update a quiz
+- `DELETE /api/quizzes/:id` - delete a quiz
+
+Create a quiz:
+
+```json
+{
+  "course": "<course-id>",
+  "title": "Node.js Basics Quiz",
+  "timeLimitMinutes": 30,
+  "maxAttempts": 3,
+  "passPercent": 50,
+  "isPublished": true,
+  "questions": [
+    {
+      "text": "What is Node.js?",
+      "type": "single_choice",
+      "points": 1,
+      "options": [
+        { "text": "A JavaScript runtime", "isCorrect": true },
+        { "text": "A database", "isCorrect": false }
+      ]
+    }
+  ]
+}
+```
