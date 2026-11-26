@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 function sendError(next, status, message) {
@@ -101,7 +102,16 @@ exports.login = async (req, res, next) => {
             return sendError(next, 401, "Invalid email or password");
         }
 
-        res.json({ message: "Login successful", data: user });
+        if (!process.env.JWT_SECRET) {
+            return sendError(next, 500, "Authentication is not configured");
+        }
+
+        const token = jwt.sign(
+            { role: user.role },
+            process.env.JWT_SECRET,
+            { subject: user._id.toString(), expiresIn: "1d" }
+        );
+        res.json({ message: "Login successful", token, data: user });
     } catch (error) {
         next(error);
     }

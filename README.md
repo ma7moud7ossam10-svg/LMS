@@ -9,6 +9,8 @@
 - `PUT /api/users/:id` or `PATCH /api/users/:id` - update a user
 - `DELETE /api/users/:id` - delete a user
 
+Login returns a JWT token. Send it as `Authorization: Bearer <token>` when calling protected endpoints.
+
 Create a user:
 
 ```json
@@ -143,3 +145,70 @@ Create a quiz:
   ]
 }
 ```
+
+## Enrollment API
+
+- `POST /api/enrollments` - enroll a student in a published course
+- `GET /api/enrollments` - list enrollments
+- `GET /api/enrollments?student=<student-id>&course=<course-id>&status=active` - filter enrollments
+- `GET /api/enrollments/:id` - get an enrollment
+- `PATCH /api/enrollments/:id` - update enrollment status (`active`, `completed`, or `cancelled`)
+
+Create an enrollment:
+
+```json
+{
+  "student": "<student-user-id>",
+  "course": "<published-course-id>"
+}
+```
+
+Only active users with the `student` role can enroll. Duplicate enrollment for the same student and course returns `409`.
+
+## Progress API
+
+- `PUT /api/progress` - create or update lesson progress
+- `GET /api/progress` - list progress records
+- `GET /api/progress?student=<student-id>&course=<course-id>` - filter progress records
+- `GET /api/progress/:id` - get a progress record
+- `GET /api/progress/student/:studentId/course/:courseId` - get course completion summary
+
+Update lesson progress:
+
+```json
+{
+  "student": "<student-user-id>",
+  "course": "<course-id>",
+  "lesson": "<lesson-id>",
+  "completed": true,
+  "watchedSeconds": 720
+}
+```
+
+An active enrollment is required to update or view a student's course summary. The summary returns the total active lessons, completed lessons, and rounded completion percentage.
+
+## Payment API
+
+Payment checkout and history require a JWT from `POST /api/users/login`.
+
+- `POST /api/payments/checkout` - create a Stripe Checkout session
+- `GET /api/payments/history` - get the authenticated user's payment history
+- `POST /api/payments/webhook` - Stripe webhook endpoint; configure this URL in Stripe
+
+Create a checkout session:
+
+```http
+POST /api/payments/checkout
+Authorization: Bearer <token>
+Content-Type: application/json
+```
+
+```json
+{
+  "courseId": "<published-course-id>"
+}
+```
+
+The checkout response includes `data.paymentId` and `data.checkoutUrl`. A verified Stripe payment webhook marks the payment as paid and creates or reactivates the student's course enrollment.
+
+Configure `JWT_SECRET`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, and `CLIENT_URL` in the environment. The webhook route must receive the raw Stripe request body for signature verification.

@@ -1,15 +1,21 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+dotenv.config();
+
 const userRoutes = require("./routes/userRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const courseRoutes = require("./routes/courseRoutes");
 const sectionRoutes = require("./routes/sectionRoutes");
 const lessonRoutes = require("./routes/lessonRoutes");
 const quizRoutes = require("./routes/quizzesRoutes");
+const enrollmentRoutes = require("./routes/enrollmentRoutes");
+const progressRoutes = require("./routes/progressRoutes");
+const stripeWebhook = require("./stripe.webhook");
+const paymentRoutes = require("./routes/paymentRoutes");
 // express use 
-dotenv.config();
 const app = express();
+app.use("/api/payments/webhook", stripeWebhook);
 app.use(express.json());
 //Routes  URL  
 
@@ -27,6 +33,10 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/sections", sectionRoutes);
 app.use("/api/lessons", lessonRoutes);
 app.use("/api/quizzes", quizRoutes);
+app.use("/api/enrollments", enrollmentRoutes);
+app.use("/api/progress", progressRoutes);
+app.use("/api/payments", paymentRoutes);
+
 // Route don't exit 
 app.use ((req, res , next )=>{
 const error = new Error(`Route ${req.originalUrl} not found`);

@@ -22,7 +22,7 @@ lms-platform/
 │   │   ├── stripe.js
 │   │   ├── storage.js             # Cloudinary أو S3
 │   │   └── mailer.js
-│   ├── middleware/
+│   ├── middleware/ done 
 │   │   ├── auth.js                # التحقق من الـ JWT
 │   │   ├── roles.js               # requireRole('instructor')
 │   │   ├── ownership.js           # هل الكورس بتاع المدرس ده؟
@@ -42,8 +42,8 @@ lms-platform/
 │   │   ├── courses/ done 
 │   │   ├── sections/ done
 │   │   ├── lessons/ done
-│   │   ├── enrollments/
-│   │   ├── progress/
+│   │   ├── enrollments/ done
+│   │   ├── progress/ done
 │   │   ├── quizzes/ done done
 │   │   ├── attempts/
 │   │   │   ├── attempts.routes.js
@@ -55,7 +55,7 @@ lms-platform/
 │   │   │   ├── certificates.controller.js
 │   │   │   ├── certificates.service.js
 │   │   │   └── pdf.js             # رسم الشهادة بـ PDFKit
-│   │   ├── payments/
+│   │   ├── payments/ done
 │   │   │   ├── payments.routes.js
 │   │   │   ├── payments.controller.js
 │   │   │   ├── payments.service.js
