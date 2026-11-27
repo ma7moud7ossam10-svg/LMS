@@ -13,6 +13,8 @@ const enrollmentRoutes = require("./routes/enrollmentRoutes");
 const progressRoutes = require("./routes/progressRoutes");
 const stripeWebhook = require("./stripe.webhook");
 const paymentRoutes = require("./routes/paymentRoutes");
+const attemptsRoutes = require("./routes/attemptsRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 // express use 
 const app = express();
 app.use("/api/payments/webhook", stripeWebhook);
@@ -36,6 +38,8 @@ app.use("/api/quizzes", quizRoutes);
 app.use("/api/enrollments", enrollmentRoutes);
 app.use("/api/progress", progressRoutes);
 app.use("/api/payments", paymentRoutes);
+app.use("/api/attempts", attemptsRoutes);
+app.use("/api/reviews", reviewRoutes);
 
 // Route don't exit 
 app.use ((req, res , next )=>{

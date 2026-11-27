@@ -212,3 +212,48 @@ Content-Type: application/json
 The checkout response includes `data.paymentId` and `data.checkoutUrl`. A verified Stripe payment webhook marks the payment as paid and creates or reactivates the student's course enrollment.
 
 Configure `JWT_SECRET`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, and `CLIENT_URL` in the environment. The webhook route must receive the raw Stripe request body for signature verification.
+
+## Quiz Attempt API
+
+Quiz attempts require a JWT from `POST /api/users/login`.
+
+- `POST /api/attempts/quiz/:quizId` - submit answers and receive the server-calculated grade
+- `GET /api/attempts/quiz/:quizId` - list the authenticated student's attempts for a quiz
+- `GET /api/attempts/:id` - get one of the authenticated student's attempts
+
+Submit an attempt:
+
+```json
+{
+  "startedAt": "2026-11-27T17:45:58.961Z",
+  "answers": [
+    {
+      "questionId": "<question-id>",
+      "optionId": "<selected-option-id>"
+    }
+  ]
+}
+```
+
+The student must have an active enrollment in the quiz's course. Attempts stop at the quiz's `maxAttempts` limit.
+
+## Review API
+
+- `POST /api/reviews` - create a course review (JWT required)
+- `GET /api/reviews` - list reviews
+- `GET /api/reviews?course=<course-id>&rating=5` - filter reviews
+- `GET /api/reviews/:id` - get a review
+- `PUT /api/reviews/:id` or `PATCH /api/reviews/:id` - update your review (JWT required)
+- `DELETE /api/reviews/:id` - delete your review (JWT required)
+
+Create a review:
+
+```json
+{
+  "course": "<published-course-id>",
+  "rating": 5,
+  "comment": "Clear lessons and useful examples."
+}
+```
+
+Only an active student enrolled in the course can create it. Each student can submit one review per course.

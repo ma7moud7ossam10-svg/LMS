@@ -16,7 +16,7 @@ lms-platform/
 │   ├── server.js                  # تشغيل السيرفر والاتصال بقاعدة البيانات
 │   ├── app.js                     # إعداد Express والـ middleware والـ routes
 │   ├── config/
-│   │   ├── env.js                 # قراءة والتحقق من متغيرات البيئة
+│   │   ├── env.js done                 # قراءة والتحقق من متغيرات البيئة
 │   │   ├── db.js
 │   │   ├── redis.js
 │   │   ├── stripe.js
@@ -45,7 +45,7 @@ lms-platform/
 │   │   ├── enrollments/ done
 │   │   ├── progress/ done
 │   │   ├── quizzes/ done done
-│   │   ├── attempts/
+│   │   ├── attempts/  done 
 │   │   │   ├── attempts.routes.js
 │   │   │   ├── attempts.controller.js
 │   │   │   ├── attempts.service.js
