@@ -15,6 +15,8 @@ const stripeWebhook = require("./stripe.webhook");
 const paymentRoutes = require("./routes/paymentRoutes");
 const attemptsRoutes = require("./routes/attemptsRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 // express use 
 const app = express();
 app.use("/api/payments/webhook", stripeWebhook);
@@ -40,6 +42,8 @@ app.use("/api/progress", progressRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/attempts", attemptsRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 // Route don't exit 
 app.use ((req, res , next )=>{

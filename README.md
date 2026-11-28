@@ -257,3 +257,40 @@ Create a review:
 ```
 
 Only an active student enrolled in the course can create it. Each student can submit one review per course.
+
+## Admin API
+
+All admin endpoints require a JWT for a user whose role is `admin`.
+
+- `GET /api/admin/dashboard` - platform totals and paid revenue
+- `GET /api/admin/users` - list users; supports `role`, `active`, and `search`
+- `PATCH /api/admin/users/:id` - change a user's role or active status
+- `GET /api/admin/courses` - list courses; supports `status` and `active`
+- `PATCH /api/admin/courses/:id/status` - change a course status or active state
+- `GET /api/admin/payments` - list payments; supports `status`
+- `DELETE /api/admin/reviews/:id` - delete any review
+
+## Notification API
+
+Notification endpoints require a JWT.
+
+- `GET /api/notifications` - list personal and broadcast notifications
+- `GET /api/notifications?unread=true` - list unread notifications
+- `GET /api/notifications/unread/count` - get the unread count
+- `PATCH /api/notifications/:id/read` - mark one notification as read
+- `PATCH /api/notifications/read-all` - mark all visible notifications as read
+- `DELETE /api/notifications/:id` - delete a personal notification
+- `POST /api/notifications` - create a personal or broadcast notification (admin only)
+
+Create a personal notification:
+
+```json
+{
+  "recipient": "<user-id>",
+  "title": "Enrollment confirmed",
+  "message": "You have successfully enrolled in the course.",
+  "type": "enrollment"
+}
+```
+
+Create a broadcast notification by omitting `recipient`.

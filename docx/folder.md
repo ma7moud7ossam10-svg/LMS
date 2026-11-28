@@ -60,9 +60,9 @@ lms-platform/
 │   │   │   ├── payments.controller.js
 │   │   │   ├── payments.service.js
 │   │   │   └── stripe.webhook.js  # يستخدم raw body
-│   │   ├── reviews/
-│   │   ├── notifications/
-│   │   └── admin/
+│   │   ├── reviews/ done 
+│   │   ├── notifications/ done
+│   │   └── admin/ done
 │   ├── jobs/
 │   │   ├── queue.js               # إعداد BullMQ
 │   │   ├── worker.js              # تشغيل العمال (process منفصل)
